@@ -47,16 +47,15 @@ const Form = () => {
               <div className="input-group">
                 <label htmlFor="genre">Genre</label>
                 <div className="radio-container">
-                  {" "}
                   <input type="radio" name="genre" id="M" />
                   <label htmlFor="M">Homme</label>
                   <input type="radio" name="genre" id="F" />
-                  <label htmlFor="F"> Femme</label>
+                  <label htmlFor="F">Femme</label>
                 </div>
               </div>
               <div className="button-container">
                 <button type="button" className="button-01" onClick={nextStep}>
-                  Continue
+                  Continuer
                 </button>
               </div>
             </div>
@@ -93,10 +92,31 @@ const Form = () => {
               </div>
               <div className="button-container">
                 <button type="button" className="button-01" onClick={prevStep}>
-                  Back
+                  Retour
                 </button>
-                <button className="button-01" type="submit">
-                  Submit
+                <button type="button" className="button-01" onClick={nextStep}>
+                  Continuer
+                </button>
+              </div>
+            </div>
+          </>
+        )}
+        {step === 3 && (
+          <>
+            <div className="user-details">
+              <div className="input-group">
+                <Input
+                  label="Télécharger un fichier"
+                  type="file"
+                  id="fichier"
+                />
+              </div>
+              <div className="button-container">
+                <button type="button" className="button-01" onClick={prevStep}>
+                  Retour
+                </button>
+                <button type="submit" className="button-01">
+                  Envoyer
                 </button>
               </div>
             </div>
