@@ -6,6 +6,7 @@ function Header() {
           src="./public/logo.png"
           alt="Logo de la ministère de la femme et de l'enfant"
           width="200px"
+          style={{ borderRadius: "10px" }}
         />
       </a>
       <input type="button" className="btn" value="Admin Panel" />{" "}

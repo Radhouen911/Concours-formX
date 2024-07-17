@@ -1,5 +1,6 @@
-import Input from "./input";
 import React, { useState } from "react";
+import Input from "./input";
+import { FaUser, FaIdCard, FaBirthdayCake } from "react-icons/fa";
 
 const Form = () => {
   const [step, setStep] = useState(1);
@@ -28,25 +29,18 @@ const Form = () => {
         {step === 1 && (
           <>
             <div className="user-details">
+              <Input label="Nom" id="nom" icon={<FaUser />} />
+              <Input label="Prénom" id="prenom" icon={<FaUser />} />
+              <Input label="CIN" id="cin" icon={<FaIdCard />} />
+              <Input
+                label="Date de naissance"
+                type="date"
+                id="date-de-naissance"
+                icon={<FaBirthdayCake />}
+              />
               <div className="input-group">
-                <Input label="Nom" id="nom" />
-              </div>
-              <div className="input-group">
-                <Input label="Prénom" id="prenom" />
-              </div>
-              <div className="input-group">
-                <Input label="CIN" id="cin" />
-              </div>
-              <div className="input-group">
-                <Input
-                  label="Date de naissance"
-                  type="date"
-                  id="date-de-naissance"
-                />
-              </div>
-              <div className="input-group">
-                <label htmlFor="genre">Genre</label>
                 <div className="radio-container">
+                  <label htmlFor="genre">Genre :</label>
                   <input type="radio" name="genre" id="M" />
                   <label htmlFor="M">Homme</label>
                   <input type="radio" name="genre" id="F" />
@@ -54,7 +48,12 @@ const Form = () => {
                 </div>
               </div>
               <div className="button-container">
-                <button type="button" className="button-01" onClick={nextStep}>
+                <button
+                  type="button"
+                  className="button-01"
+                  onClick={nextStep}
+                  style={{ marginTop: "9%" }}
+                >
                   Continuer
                 </button>
               </div>
@@ -64,32 +63,16 @@ const Form = () => {
         {step === 2 && (
           <>
             <div className="user-details">
-              <div className="input-group">
-                <Input
-                  label="Numéro de téléphone"
-                  type="tel"
-                  id="n-telephone"
-                />
-              </div>
-              <div className="input-group">
-                <Input label="Adresse mail" type="email" id="email" />
-              </div>
-              <div className="input-group">
-                <Input label="Adresse" id="adresse" />
-              </div>
-              <div className="input-group">
-                <Input label="Niveau éducatif" id="niveau-educatif" />
-              </div>
-              <div className="input-group">
-                <Input
-                  label="Année de graduation"
-                  type="number"
-                  id="graduation-year"
-                />
-              </div>
-              <div className="input-group">
-                <Input label="Expérience" id="experience" />
-              </div>
+              <Input label="Numéro de téléphone" type="tel" id="n-telephone" />
+              <Input label="Adresse mail" type="email" id="email" />
+              <Input label="Adresse" id="adresse" />
+              <Input label="Niveau éducatif" id="niveau-educatif" />
+              <Input
+                label="Année de graduation"
+                type="number"
+                id="graduation-year"
+              />
+              <Input label="Expérience" id="experience" />
               <div className="button-container">
                 <button type="button" className="button-01" onClick={prevStep}>
                   Retour
@@ -104,12 +87,29 @@ const Form = () => {
         {step === 3 && (
           <>
             <div className="user-details">
-              <div className="input-group">
-                <Input
-                  label="Télécharger un fichier"
-                  type="file"
-                  id="fichier"
-                />
+              <div className="dropzone">
+                <input type="file" id="file-input" multiple />
+                <div className="dropzone-content">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="size-6"
+                    height="100px"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+                    />
+                  </svg>
+                  <p>
+                    Cliquez pour télécharger ou glisser-déposer
+                    <br />
+                  </p>
+                </div>
               </div>
               <div className="button-container">
                 <button type="button" className="button-01" onClick={prevStep}>
