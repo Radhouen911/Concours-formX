@@ -190,6 +190,11 @@ label {
   font-size: 16px;
   margin-bottom: 0.5rem;
 }
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 0.5rem;
+}
 
 /* Button Styles */
 .button-01 {
@@ -267,7 +272,6 @@ label {
   border: 1px solid #5643cc;
 }
 /* drop zone */
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 
 .dropzone {
   width: 100%;

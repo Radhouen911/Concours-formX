@@ -1,13 +1,17 @@
 import React from "react";
 
-const Input = ({ label, type = "text", id, name, icon }) => {
+const Input = ({ label, type = "text", id, name, value, onChange, error }) => {
   return (
     <div className="input-group">
       <label htmlFor={id}>{label}</label>
-      <div className="input-icon-wrapper">
-        {icon}
-        <input type={type} id={id} name={name || id} />
-      </div>
+      <input
+        type={type}
+        id={id}
+        name={name || id}
+        value={value}
+        onChange={onChange}
+      />
+      {error && <span className="error-message">{error}</span>}
     </div>
   );
 };
