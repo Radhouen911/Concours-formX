@@ -55,18 +55,40 @@ const Form = () => {
     const newErrors = {};
     if (!formData.telephone)
       newErrors.telephone = "Le numéro de téléphone est requis.";
-    if (!/^\d{10}$/.test(formData.telephone))
+    else if (!/^\d{8}$/.test(formData.telephone))
       newErrors.telephone = "Le numéro de téléphone est invalide.";
+
     if (!formData.email) newErrors.email = "L'adresse e-mail est requise.";
-    if (!/\S+@\S+\.\S+/.test(formData.email))
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
       newErrors.email = "L'adresse e-mail est invalide.";
+
     if (!formData.adresse) newErrors.adresse = "L'adresse est requise.";
     if (!formData.niveauEducatif)
       newErrors.niveauEducatif = "Le niveau éducatif est requis.";
     if (!formData.graduationYear)
       newErrors.graduationYear = "L'année de graduation est requise.";
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+  };
+  const [files, setFiles] = useState([]);
+  const handleFileChange = (e) => {
+    const selectedFiles = [...e.target.files];
+    const validFiles = validateFiles(selectedFiles);
+    setFiles(validFiles);
+  };
+
+  const validateFiles = (anyFiles) => {
+    const maxSize = 5 * 1024 * 1024;
+    const validatedFiles = [];
+    for (let file of anyFiles) {
+      if (file.size > maxSize) {
+        alert(`${file.name} is too large. Max size is 5MB.`);
+      } else {
+        validateFiles.push(file);
+      }
+    }
+    return validateFiles;
   };
 
   const nextStep = () => {
@@ -243,7 +265,12 @@ const Form = () => {
         {step === 3 && (
           <div className="user-details">
             <div className="dropzone">
-              <input type="file" id="file-input" multiple />
+              <input
+                type="file"
+                id="file-input"
+                multiple
+                onChange={handleFileChange}
+              />
               <div className="dropzone-content">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
