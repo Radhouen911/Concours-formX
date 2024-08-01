@@ -71,7 +71,9 @@ const Form = () => {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+
   const [files, setFiles] = useState([]);
+
   const handleFileChange = (e) => {
     const selectedFiles = [...e.target.files];
     const validFiles = validateFiles(selectedFiles);
@@ -89,6 +91,31 @@ const Form = () => {
       }
     }
     return validateFiles;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const formFilesData = new FormData();
+    for (const key in formData) {
+      formFilesData.append(key, formData[key]);
+    }
+
+    files.forEach((files, index) => {
+      formFilesData.append(`files${index + 1}`, file);
+    });
+
+    fetch("/api/submit", {
+      method: "POST",
+      body: formFilesData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   const nextStep = () => {
@@ -297,7 +324,11 @@ const Form = () => {
               <button type="button" className="button-01" onClick={prevStep}>
                 Retour
               </button>
-              <button type="submit" className="button-01">
+              <button
+                type="submit"
+                className="button-01"
+                onClick={handleSubmit}
+              >
                 Envoyer
               </button>
             </div>
