@@ -29,7 +29,6 @@ const Form = () => {
     if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
       return age - 1 >= 18;
     }
-
     return age >= 18;
   };
 
@@ -82,7 +81,7 @@ const Form = () => {
 
   const validateFiles = (anyFiles) => {
     const maxSize = 5 * 1024 * 1024;
-    const validatedFiles = [];
+    const validateFiles = [];
     for (let file of anyFiles) {
       if (file.size > maxSize) {
         alert(`${file.name} is too large. Max size is 5MB.`);
